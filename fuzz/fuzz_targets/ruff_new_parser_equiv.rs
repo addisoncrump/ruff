@@ -17,7 +17,7 @@ fn do_fuzz(case: &[u8]) -> Corpus {
 
     let source_type = PySourceType::Python;
     let Ok((tokens, _comment_ranges)) = tokens_and_ranges(source, source_type) else {
-        return Corpus::Keep;
+        return Corpus::Keep; // keep even rejected source code as this may allow us to explore later
     };
 
     let source_path = "fuzzed-source.py";
